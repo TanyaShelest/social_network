@@ -1,7 +1,11 @@
+import Header from './containers/Header';
+import Content from './containers/Content';
+
 function App() {
   return (
-    <div>
-      <h1>This is Pulse!</h1>
+    <div className="App">
+    <Header />
+    <Content />
     </div>
   );
 }
