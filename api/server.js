@@ -1,13 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3001
+const express = require("express");
+const app = express();
+const port = 3001;
 
-app.get('/', (req, res) => {
-  res.send('Hi there!')
-})
 
-app.get('/:name', (req, res) => {
-  res.send(`Hi, ${req.params.name}!`)
-})
+app.use((err, req, res, next) => {
+  console.error("Error:", err.stack);
+  res.status(500);
+  res.json({error: "Something went wrong"});
+  });
 
-app.listen(port)
+app.get("/", (req, res) => {
+  res.send("Hi there!");
+});
+
+app.listen(port);
