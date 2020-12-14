@@ -1,7 +1,8 @@
 const express = require("express");
+const ConfigWrapper = require("./config-wrapper");
 const app = express();
-const port = 3001;
 
+const config = new ConfigWrapper();
 
 app.use((err, req, res, next) => {
   console.error("Error:", err.stack);
@@ -13,4 +14,4 @@ app.get("/", (req, res) => {
   res.send("Hi there!");
 });
 
-app.listen(port);
+app.listen(config.get("PORT"));
