@@ -1,11 +1,11 @@
-import Header from './containers/Header';
-import Content from './containers/Content';
+import React from 'react';
+import UserPageContainer from './containers/UserPage';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-    <Header />
-    <Content />
+      <UserPageContainer />
     </div>
   );
 }
