@@ -4,6 +4,9 @@ const app = express();
 
 const config = new ConfigWrapper();
 
+require("./routes/posts")(app);
+require("./routes/user")(app);
+
 app.use((err, req, res, next) => {
   console.error("Error:", err.stack);
   res.status(500);
