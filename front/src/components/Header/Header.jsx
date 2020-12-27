@@ -4,6 +4,7 @@ import AddPostButton from './AddPostButton';
 import PostListButton from './PostListButton';
 import Profile from './Profile/Profile';
 import {pages} from '../../pages';
+import PropTypes from 'prop-types';
 
 function Header({chooseContent, onSubmit, userName}) {
     return (
@@ -15,6 +16,12 @@ function Header({chooseContent, onSubmit, userName}) {
       </div>
     );
   }
-  
+
+Header.propTypes = {
+  chooseContent: PropTypes.func.isRequired,
+  userName: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired
+};
+
 export default Header;
   

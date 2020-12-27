@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ProfileInfo({userName}) {
     
@@ -8,5 +9,9 @@ function ProfileInfo({userName}) {
     </div>
   );
 }
+
+ProfileInfo.propTypes = {
+  userName: PropTypes.string.isRequired
+};
 
 export default ProfileInfo;

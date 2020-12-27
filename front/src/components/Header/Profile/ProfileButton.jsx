@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ProfileButton({userName, onClick}) {
     
@@ -7,5 +8,10 @@ function ProfileButton({userName, onClick}) {
     );
 }
   
+ProfileButton.propTypes = {
+  userName: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
+
 export default ProfileButton;
   

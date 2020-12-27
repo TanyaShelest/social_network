@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import ProfileButton from './ProfileButton';
+import PropTypes from 'prop-types';
 
 function Profile({onClick, onSubmit, userName}) {
 
@@ -11,6 +12,12 @@ function Profile({onClick, onSubmit, userName}) {
     </div>
   );
 }
-  
+
+Profile.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  userName: PropTypes.string
+};
+
 export default Profile;
   
