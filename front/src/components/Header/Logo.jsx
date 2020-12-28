@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Logo() {
     return (
       <div>
@@ -6,5 +8,5 @@ function Logo() {
     );
   }
   
-  export default Logo;
+export default Logo;
   
