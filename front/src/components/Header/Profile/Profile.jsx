@@ -1,14 +1,13 @@
-import React from 'react';
-import Form from './Form';
-import ProfileButton from './ProfileButton';
-import PropTypes from 'prop-types';
+import React from "react";
+import Form from "./Form";
+import ProfileButton from "./ProfileButton";
+import PropTypes from "prop-types";
 
-function Profile({onClick, onSubmit, userName}) {
-
+function Profile({ onClick, onSubmit, userName }) {
   return (
     <div className="profile">
       <Form onSubmit={onSubmit} />
-      <ProfileButton onClick={onClick} userName={userName}/>
+      <ProfileButton onClick={onClick} userName={userName} />
     </div>
   );
 }
@@ -16,8 +15,11 @@ function Profile({onClick, onSubmit, userName}) {
 Profile.propTypes = {
   onClick: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  userName: PropTypes.string
+  userName: PropTypes.string,
+};
+
+Profile.defaultProps = {
+  userName: "anon",
 };
 
 export default Profile;
-  

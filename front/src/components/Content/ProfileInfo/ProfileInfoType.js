@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const fileType = PropTypes.shape({
   id: PropTypes.number,
@@ -16,9 +16,7 @@ const userType = PropTypes.shape({
 
 const likeType = PropTypes.shape({
   userId: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number
-    }),
+    user: userType,
     date: PropTypes.string
 });
 
