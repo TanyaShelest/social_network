@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function AddPostButton({onClick}) {
     return (
@@ -10,6 +11,10 @@ function AddPostButton({onClick}) {
         
     );
   }
-  
+
+AddPostButton.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
+
 export default AddPostButton;
   
