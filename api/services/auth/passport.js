@@ -13,13 +13,13 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "User not found" });
         }
-        // Check for passwords match:
+        if (!user.active) {
+          return done(null, false, { message: "Your email is not verified" });
+        }
         const pwdMatch = await bcrypt.compare(password, user.password);
         if (!pwdMatch) {
-          // Authentication failure:
           return done(null, false, { message: "The password doesn't match" });
         }
-        // Everything is ok, let's proceed:
         return done(null, user, { message: "Logged in successfully" });
       } catch (e) {
         console.log(e.stack);

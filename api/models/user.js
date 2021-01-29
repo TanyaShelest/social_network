@@ -18,6 +18,14 @@ class User {
     }
     return result;
   }
+
+  static async setActive(userId) {
+    return db(User.tableName).where({ id: userId }).update({ active: true });
+  }
+
+  static findByToken(token) {
+    return db.select("id").from(User.tableName).where({ token: token }).first();
+  }
 }
 
 module.exports = User;

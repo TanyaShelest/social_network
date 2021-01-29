@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const ConfigWrapper = require("./config-wrapper");
-const config = new ConfigWrapper();
 const passport = require("passport");
+const config = new ConfigWrapper();
 const authRequest = require("./middleware/auth-request")(passport);
 const diContainer = require("./services/diContainer");
 

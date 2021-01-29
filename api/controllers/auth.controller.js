@@ -1,7 +1,10 @@
 const passport = require("../services/auth/passport");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+const { v4: uuidv4 } = require("uuid");
 const User = require("../models/user");
+const mailer = require("../services/mailer");
 
 class AuthController {
   async login(req, res) {
@@ -50,14 +53,44 @@ class AuthController {
           avatar_path: req.body.avatar_path,
           university: req.body.university,
           phone_number: req.phone_number,
+          token: uuidv4(),
+        };
+
+        const link = "http://" + req.get("host") + "/auth/verify/" + user.token;
+        const mailOptions = {
+          from: process.env.MAIL_USER,
+          to: user.email,
+          subject: "Please confirm your email",
+          html:
+            "Hello,<br><a href=" +
+            link +
+            ">Click here to verify your email</a>",
         };
         try {
+          mailer.sendMail(mailOptions, (error) => {
+            if (error) {
+              console.log(error.message);
+              res.json({ error: error.message });
+            } else {
+              res.send("Confirmation link has been sent to your email");
+            }
+          });
           await User.saveUser(user);
-          res.status(200).json({ message: "Registered successfully" });
         } catch (error) {
           console.log(error.stack);
+          throw new Error(error.message);
         }
       }
+    }
+  }
+
+  async verifyEmail(req, res) {
+    const userId = User.findByToken(req.params.token);
+    if (userId) {
+      await User.setActive(userId);
+      res.send("Email has been successfully verified");
+    } else {
+      res.send("Failed to verify email");
     }
   }
 
