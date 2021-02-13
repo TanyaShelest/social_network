@@ -1,31 +1,26 @@
 import React from "react";
 import AddPost from "./Post/AddPost";
-import PostList from "./Post/PostList";
+import HomePage from "./Post/HomePage";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import { pages } from "../../pages";
-import PropTypes from "prop-types";
+import NotFound from "../NotFound";
 import { userDataType } from "./ProfileInfo/ProfileInfoType";
+import {Switch, Route} from "react-router-dom";
 
-function Content({ displayedContent, userName, userData }) {
+function Content({userData}) {
   return (
-    <div className="content">
-      {displayedContent === pages.articles && <PostList />}
-      {displayedContent === pages.addArticle && <AddPost />}
-      {displayedContent === pages.profileInfo && (
-        <ProfileInfo userName={userName} userData={userData} />
-      )}
-    </div>
+    <Switch>
+      <Route exact path="/" component={HomePage}/>
+      <Route exact path="/add" component={AddPost}/>
+      <Route exact path="/profile"
+             render={() =>
+                 <ProfileInfo userData={userData}/>}/>
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 
 Content.propTypes = {
-  displayedContent: PropTypes.string.isRequired,
-  userName: PropTypes.string,
   userData: userDataType,
-};
-
-Content.defaultProps = {
-  userName: "anon",
 };
 
 export default Content;

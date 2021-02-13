@@ -1,34 +1,27 @@
 import React from "react";
 import Logo from "./Logo";
-import AddPostButton from "./AddPostButton";
-import PostListButton from "./PostListButton";
 import Profile from "./Profile/Profile";
-import { pages } from "../../pages";
-import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import { userDataType } from "../Content/ProfileInfo/ProfileInfoType";
 
-function Header({ chooseContent, onSubmit, userName }) {
+function Header({userData}) {
   return (
     <div className="header">
-      <Logo />
-      <AddPostButton onClick={chooseContent(pages.addArticle)} />
-      <PostListButton onClick={chooseContent(pages.articles)} />
-      <Profile
-        onClick={chooseContent(pages.profileInfo)}
-        onSubmit={onSubmit}
-        userName={userName}
-      />
+      <Link to="/">
+        <Logo />
+      </Link>
+      <Link to="/add">
+        Add Post
+      </Link>
+      <Link to="/profile">
+        <Profile userData={userData}/>
+      </Link>
     </div>
   );
 }
 
 Header.propTypes = {
-  chooseContent: PropTypes.func.isRequired,
-  userName: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-};
-
-Header.defaultProps = {
-  userName: "anon",
+  userData: userDataType,
 };
 
 export default Header;
