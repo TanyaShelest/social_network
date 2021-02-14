@@ -3,7 +3,7 @@ const app = express();
 const ConfigWrapper = require("./config-wrapper");
 const passport = require("passport");
 const config = new ConfigWrapper();
-const authRequest = require("./middleware/auth-request")(passport);
+const authRequest = require("./middleware/auth-request");
 const diContainer = require("./services/diContainer");
 
 diContainer.register("db", require("./services/db-connection"));
@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/auth", authRoutes);
-app.use("/api", postRoutes);
-app.use("/api", userRoutes);
+app.use("/posts", postRoutes);
+app.use("/users", userRoutes);
 
 app.use((err, req, res, next) => {
   console.error("Error:", err.stack);
