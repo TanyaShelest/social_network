@@ -1,3 +1,5 @@
+const Post = require("../models/post");
+
 class PostController {
   async getPosts(req, res) {
     const posts = await req.app.db("posts");
@@ -5,7 +7,10 @@ class PostController {
   }
 
   async getPost(req, res) {
-    const post = await req.app.db("posts").where("id", req.params.id);
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      res.status(404).json({ message: "Nothing found" });
+    }
     res.json(post);
   }
 

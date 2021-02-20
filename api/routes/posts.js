@@ -1,28 +1,34 @@
 const router = require("express").Router();
-const postController = require("../controllers/post.controller");
 const passport = require("passport");
-
-router.get("/post/:id(\\d+)", postController.getPost);
+const postController = require("../controllers/post.controller");
+const checkAuthorized = require("../middleware/check-authorized");
+const Post = require("../models/post");
 
 router.get(
-  "/posts",
+  "/",
   passport.authenticate("jwt", { session: false }),
   postController.getPosts
 );
 
+router.get(
+  "/:id(\\d+)",
+  passport.authenticate("jwt", { session: false }),
+  postController.getPost
+);
+
 router.post(
-  "/post/create",
+  "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.send("Create a post");
   }
 );
 
-router.put("/post/:id(\\d+)/update", (req, res) => {
+router.put("/:id(\\d+)", checkAuthorized({ model: Post }), (req, res) => {
   res.send("Update a post");
 });
 
-router.delete("/post/:id(\\d+)/delete", (req, res) => {
+router.delete("/:id(\\d+)", checkAuthorized({ model: Post }), (req, res) => {
   res.send("Delete a post");
 });
 

@@ -18,7 +18,7 @@ class AuthController {
             res.status(400).json({ message: error.message });
           }
           const token = jwt.sign(
-            { id: user.id, email: user.email },
+            { id: user.id, email: user.email, admin: user.admin },
             process.env.JWT,
             {
               expiresIn: 60 * 60,
