@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { userDataType } from "./ProfileInfoType";
 
-function ProfileInfo({ userName, userData }) {
+function ProfileInfo({ userData }) {
   return (
     <div>
-      <h1>Welcome, {userName}</h1>
+      <h1>Welcome, {userData.firstName}</h1>
       <ul>
         <li>{userData.id}</li>
         <li>{userData.age}</li>
@@ -18,12 +17,7 @@ function ProfileInfo({ userName, userData }) {
 }
 
 ProfileInfo.propTypes = {
-  userName: PropTypes.string,
   userData: userDataType,
-};
-
-ProfileInfo.defaultProps = {
-  userName: "anon",
 };
 
 export default ProfileInfo;

@@ -1,25 +1,18 @@
 import React from "react";
-import Form from "./Form";
-import ProfileButton from "./ProfileButton";
-import PropTypes from "prop-types";
+import LogOutButton from "./LogOutButton";
+import {userDataType} from "../../Content/ProfileInfo/ProfileInfoType";
 
-function Profile({ onClick, onSubmit, userName }) {
+function Profile({userData}) {
   return (
     <div className="profile">
-      <Form onSubmit={onSubmit} />
-      <ProfileButton onClick={onClick} userName={userName} />
+      Profile {`${userData.firstName} ${userData.lastName}`}
+      <LogOutButton/>
     </div>
   );
 }
 
 Profile.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  userName: PropTypes.string,
-};
-
-Profile.defaultProps = {
-  userName: "anon",
+  userData: userDataType,
 };
 
 export default Profile;
